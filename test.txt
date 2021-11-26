@@ -1,0 +1,2 @@
+this file has some text
+inside and a new line
