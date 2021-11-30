@@ -4,30 +4,44 @@
 #include <unistd.h>
 #include <stdlib.h>
 
-void text_gen(int argc, char **argv)
+char **text_gen(int argc, char **argv)
 {
-	if (argc != 3)
+	int		i = 0;
+	int		j = 1;
+	int		line_length;
+	int		lines = argc - 1;
+	char	letter = 'A';
+
+	char **result;
+	result = (char **)malloc(sizeof(char *) * (lines + 1));
+	if (!result)
+		return (NULL);
+	ft_bzero(result, sizeof(char *) * (lines + 1));
+
+	while (lines != 0)
 	{
-		printf("1st argument is number of lines;\n3rd arg is filename (with .txt).\n");
-		return ;
-	}
-	int lines = atoi(argv[1]);
-	int line_length;
-	char *file = argv[2];
-	FILE *fptr;
-	fptr = fopen(file, "w");
-	char letter = 'A';
-	while (lines > 0)
-	{
-		line_length = lines * 10;
-		while (line_length > 0)
-		{
-			fprintf(fptr, "%c", letter);
-			line_length--;
-		}
+		line_length = atoi(argv[j]);
+		result[i] = ft_strnew(line_length);
+		if (!result[i])
+			return (NULL);
+		ft_memset(result[i], letter, line_length);
+		i++;
+		j++;
 		letter++;
-		fprintf(fptr, "\n");
 		lines--;
+	}
+	return (result);
+}
+
+void file_gen(char **text)
+{
+	FILE *fptr;
+	char *file = "txt.txt";
+	fptr = fopen(file, "w");
+	while (*text)
+	{
+		fprintf(fptr, "%s\n", *text);
+		text++;
 	}
 	fclose(fptr);
 	return ;
@@ -35,22 +49,32 @@ void text_gen(int argc, char **argv)
 
 int main(int argc, char **argv)
 {
-	text_gen(argc, argv);
-	char *filename = argv[2];
+	if (argc < 2)
+	{
+		printf("Provide at least one linelength.\n");
+		return (1);
+	}
+	char **text = text_gen(argc, argv);
+	file_gen(text);
+	char *filename = "txt.txt";
 	int fd;
 	char *result;
+	int res;
 	fd = open(filename, O_RDONLY);
-
-	get_next_line(fd, &result);
-	printf("%s\n", result);
-	get_next_line(fd, &result);
-	printf("%s\n", result);
-	get_next_line(fd, &result);
-	printf("%s\n", result);
-	get_next_line(fd, &result);
-	printf("%s\n", result);
-	get_next_line(fd, &result);
-	printf("%s\n", result);
-	
-	return (1);
+	//fd = 1;
+	while (*text)
+	{
+		res = get_next_line(fd, &result);
+		// if (res == 1 && !strcmp(result, *text))
+		// {
+		// 	//printf("%s vs. %s\n", result, *text);
+		// 	printf("line ok\n");
+		// }
+		text++;
+	}
+	if ((res = get_next_line(fd, &result)) == 0)
+		printf("OK: Everything read\n");
+	else
+		printf("KO!\nResult line -%s-\nRes value: %d\n", result, res);
+	return (0);
 }

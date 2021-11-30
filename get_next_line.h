@@ -6,7 +6,7 @@
 /*   By: ishakuro <ishakuro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 12:38:39 by ishakuro          #+#    #+#             */
-/*   Updated: 2021/11/29 18:31:01 by ishakuro         ###   ########.fr       */
+/*   Updated: 2021/11/30 15:57:00 by ishakuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@
 #include "libft.h"
 
 #define BUFF_SIZE 32
+#define FD_COUNT 4096
 
-char *get_next_line(const int fd, char **line);
+int get_next_line(const int fd, char **line);
 
 #endif
