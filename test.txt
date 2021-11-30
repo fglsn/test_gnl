@@ -1,2 +1,4 @@
-this file has some text
-inside and a new line
+ABCDEFGHIJKLMNO
+1234567890
+with a
+text and a new line in it
