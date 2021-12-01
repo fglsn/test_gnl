@@ -33,11 +33,10 @@ char **text_gen(int argc, char **argv)
 	return (result);
 }
 
-void file_gen(char **text)
+void file_gen(char **text, char *filename)
 {
 	FILE *fptr;
-	char *file = "txt.txt";
-	fptr = fopen(file, "w");
+	fptr = fopen(filename, "w");
 	while (*text)
 	{
 		fprintf(fptr, "%s\n", *text);
