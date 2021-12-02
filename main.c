@@ -54,26 +54,32 @@ int main(int argc, char **argv)
 		return (1);
 	}
 	char **text = text_gen(argc, argv);
-	file_gen(text);
 	char *filename = "txt.txt";
+	file_gen(text, filename);
 	int fd;
 	char *result;
 	int res;
+	int failed = 0;
+//	int count_lines = 0;
 	fd = open(filename, O_RDONLY);
 	//fd = 1;
 	while (*text)
 	{
 		res = get_next_line(fd, &result);
-		// if (res == 1 && !strcmp(result, *text))
-		// {
-		// 	//printf("%s vs. %s\n", result, *text);
-		// 	printf("line ok\n");
-		// }
+		if (res == 1 && !strcmp(result, *text))
+		{
+			printf("%s vs. %s\n", result, *text);
+			printf("line ok\n");
+		}
+		else {
+			printf("Failed, expected '%s', got '%s'\n", *text, result);
+			failed++;
+		}
 		text++;
 	}
-	if ((res = get_next_line(fd, &result)) == 0)
+	if (!failed && (res = get_next_line(fd, &result)) == 0)
 		printf("OK: Everything read\n");
-	else
+	else if (!failed)
 		printf("KO!\nResult line -%s-\nRes value: %d\n", result, res);
 	return (0);
 }
