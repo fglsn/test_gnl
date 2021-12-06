@@ -60,7 +60,7 @@ int main(int argc, char **argv)
 	char *result;
 	int res;
 	int failed = 0;
-//	int count_lines = 0;
+	int count_lines = 0;
 	fd = open(filename, O_RDONLY);
 	//fd = 1;
 	while (*text)
@@ -68,8 +68,9 @@ int main(int argc, char **argv)
 		res = get_next_line(fd, &result);
 		if (res == 1 && !strcmp(result, *text))
 		{
-			printf("%s vs. %s\n", result, *text);
-			printf("line ok\n");
+			//printf("%s vs. %s\n", result, *text);
+			//printf("Line OK\n");
+			count_lines++;
 		}
 		else {
 			printf("Failed, expected '%s', got '%s'\n", *text, result);
@@ -78,7 +79,7 @@ int main(int argc, char **argv)
 		text++;
 	}
 	if (!failed && (res = get_next_line(fd, &result)) == 0)
-		printf("OK: Everything read\n");
+		printf("OK: Everything read\nLines read before 0 was returned: %d\n", count_lines);
 	else if (!failed)
 		printf("KO!\nResult line -%s-\nRes value: %d\n", result, res);
 	return (0);
