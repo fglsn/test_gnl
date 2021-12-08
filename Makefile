@@ -1,5 +1,5 @@
 CC = gcc
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -Wpedantic -Wunused -Wconversion -Wunreachable-code -Wtype-limits
 
 all: clean
 	make -C ../get_next_line/libft/ fclean && make -C ../get_next_line/libft/
