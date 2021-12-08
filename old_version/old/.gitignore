@@ -1,0 +1,8 @@
+a.out
+*.o
+main.c
+libft/*.o
+test.txt
+.DS_Store
+.icloud
+.a
