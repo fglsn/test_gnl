@@ -1,5 +1,5 @@
-CC = gcc
-FLAGS = -Wall -Wextra -Werror -Wpedantic -Wunused -Wconversion -Wunreachable-code -Wtype-limits
+CC = clang
+FLAGS = -Wall -Wextra -Werror
 
 all: clean
 	make -C ../get_next_line/libft/ fclean && make -C ../get_next_line/libft/
@@ -19,7 +19,12 @@ main1:
 main2:
 	$(CC) $(FLAGS) -I ../get_next_line/libft/includes -o ../get_next_line/get_next_line.o -c ../get_next_line/get_next_line.c
 	$(CC) $(FLAGS) -I ../get_next_line/libft/includes -o main2.o -c main2.c
-	clang -o main2.out main2.o ../get_next_line/get_next_line.o -I ../get_next_line/libft/includes -L ../get_next_line/libft/ -lft
+	clang -o main2.out main2.o ../get_next_line/get_next_line.o -I ../get_next_line/libft -L ../get_next_line/libft/ -lft
+
+main3:
+	$(CC) $(FLAGS) -I ../get_next_line/libft/includes -o ../get_next_line/get_next_line.o -c ../get_next_line/get_next_line.c
+	$(CC) $(FLAGS) -I ../get_next_line/libft/includes -o main3.o -c main3.c
+	clang -o main3.out main3.o ../get_next_line/get_next_line.o -I ../get_next_line/libft -L ../get_next_line/libft/ -lft
 
 clean:
 	rm -f ../get_next_line/libft/*.o ../get_next_line/libft/*.a *.gch *.o *.out ../get_next_line/*.o
