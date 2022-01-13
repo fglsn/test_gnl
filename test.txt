@@ -1,5 +1,0 @@
-ABCDEFGHIJKLMNO
-1234567890
-test
-with a
-text and without new line at the end
