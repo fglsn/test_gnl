@@ -27,12 +27,12 @@ main3:
 	clang -o main3 main3.o ../get_next_line/get_next_line.o -I ../get_next_line/libft -L ../get_next_line/libft/ -lft
 
 test: clean
-	./main 0 1 2 3 4 5 6 7 8 9 15000 30000 50000 100000 1000000
+	./main 0 1 2 3 4 5 6 7 8 9 15000 30000 50000 100000 100
 	./main1 test
 	./main2	file
 	./main2	file1
 	./main2	file2
-	./main2	test_bible
+	time ./main2 test_bible
 	./main2	test1
 	./main2	test2
 	./main2	txt.txt
