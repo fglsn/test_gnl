@@ -1,4 +1,4 @@
-#include "get_next_line.h"
+#include "../get_next_line/get_next_line.h"
 #include <fcntl.h>
 #include <stdio.h>
 #include <unistd.h>
@@ -10,7 +10,7 @@ void test1()
 	int result;
 	int i = 0;
 	int count_lines = 0;
-	int fd = open("test.txt", O_RDONLY);
+	int fd = open("test", O_RDONLY);
 	char *text_lines[5] = {
 		"ABCDEFGHIJKLMNO",
 		"1234567890",
@@ -46,7 +46,7 @@ void test2()
 {
 	char *line;
 	int result;
-	int fd = open("test2.txt", O_RDONLY);
+	int fd = open("test1", O_RDONLY);
 	printf("\nTest 2: \n");
 	printf("-----------------\n");
 	if ((result = get_next_line(fd, &line)) == 0)
@@ -59,9 +59,9 @@ void test2()
 void test3()
 {
 	char *line;
-	int fd1 = open("test.txt", O_RDONLY);
-	int fd2 = open("test2.txt", O_RDONLY);
-	int fd3 = open("test3.txt", O_RDONLY);
+	int fd1 = open("test", O_RDONLY);
+	int fd2 = open("test1", O_RDONLY);
+	int fd3 = open("test2", O_RDONLY);
 
 	int res1;
 	int res2;
