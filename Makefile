@@ -32,7 +32,7 @@ test: clean
 	./main2	file
 	./main2	file1
 	./main2	file2
-	time ./main2 test_bible
+	time ./main2 test_bible.txt
 	./main2	test1
 	./main2	test2
 	./main2	txt.txt

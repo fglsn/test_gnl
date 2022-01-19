@@ -10,7 +10,7 @@ int main(void)
 
 	char* line;
 
-	int res = get_next_line(0, &line);
+	int res = get_next_line(1, &line);
 	ft_putendl(line);
 	printf("%d\n", res);
 }
